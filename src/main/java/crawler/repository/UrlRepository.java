@@ -14,4 +14,8 @@ public interface UrlRepository extends JpaRepository<UrlPojo, Serializable> {
 	public long count();
 	
 	public List<UrlPojo> findByUrlContaining(String url);
+	
+	public List<UrlPojo> findByUrlContainingAndIsUrlLive(String url, Boolean isUrlLive);
+	
+	public List<UrlPojo> findDistinctUrlByUrlContainingAndUrlContainingAndIsUrlLive(String url, String url2, Boolean isUrlLive);
 }

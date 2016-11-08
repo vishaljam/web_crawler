@@ -1,7 +1,6 @@
 package crawler.pojos;
 
 import java.io.Serializable;
-import java.util.Date;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -21,11 +20,7 @@ public class UrlPojo implements Serializable {
 	private long id;
 	
 	private @Getter @Setter String url;
-	
-	//@Getter @Setter private Boolean isVisited;
-	
-	//@Getter @Setter private Date visitedDate;
-	
+		
 	@Getter @Setter private Boolean isUrlLive;
 
 	public String getUrl() {
@@ -35,22 +30,6 @@ public class UrlPojo implements Serializable {
 	public void setUrl(String url) {
 		this.url = url;
 	}
-
-//	public Date getVisitedDate() {
-//		return visitedDate;
-//	}
-//
-//	public void setVisitedDate(Date visitedDate) {
-//		this.visitedDate = visitedDate;
-//	}
-//
-//	public Boolean getIsVisited() {
-//		return isVisited;
-//	}
-//
-//	public void setIsVisited(Boolean isVisited) {
-//		this.isVisited = isVisited;
-//	}
 
 	public Boolean getIsUrlLive() {
 		return isUrlLive;

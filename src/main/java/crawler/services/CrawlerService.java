@@ -31,15 +31,24 @@ public class CrawlerService {
 	@Autowired(required=true)
 	private UrlRepository urlRepository;
 	
-	//@Scheduled(fixedDelay=120000)
+	@Scheduled(fixedDelay=172800000)
 	public void crawl() {
+		int flag = 0;
 		Connection connection = Jsoup.connect(url);
 		try {
 			Document htmlDocument = connection.get();
 			UrlPojo urlPojo = new UrlPojo();
 			urlPojo.setUrl(url);
 			urlPojo.setIsUrlLive(true);
-			urlRepository.save(urlPojo);
+			List<UrlPojo> oldUrlPojos = urlRepository.findByUrl(url);
+			if (oldUrlPojos.size() > 0) {
+				flag = 0;
+			} else {
+				flag = 1;
+			}
+			if (flag == 1) {
+				urlRepository.save(urlPojo);
+			}
 			Elements urls = htmlDocument.select("a[href]");
 			for(Element link : urls) {
 				String fullLink = link.absUrl("href");
@@ -97,10 +106,9 @@ public class CrawlerService {
 		}
 	}
 	
-	@Scheduled(fixedDelay=60000)
+	@Scheduled(fixedDelay=129600000)
 	public void refreshLocalCopy() {
-		//long count = urlRepository.count();
-		int i = 28;
+		int i = 0;
 		while(true) {
 			Page<UrlPojo> urlPages = urlRepository.findAll(new PageRequest(i, 2));
 			if (urlPages.hasContent()) {
