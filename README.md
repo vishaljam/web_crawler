@@ -3,6 +3,9 @@ Toy web crawler which is crawling shopping.com
 
 # How to run ?
 
+First open src/main/resources/application.properties file and at spring.datasource.username and spring.datasource.password put your mysql credentials.
+Also don't forget to create database with name "crawler". Tables will be created automatically.
+
 Using Commandline:
 
 1. This is a simple spring boot application. And gradle is used as build tool.
